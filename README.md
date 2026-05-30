@@ -14,5 +14,5 @@ The tree is derived from the IQ-TREE website (https://www.hiv.lanl.gov/content/s
 
 6. The .ipynb Jupyter Notebook file is "actin phylogenetic tree.ipynb" this is where the executable code resides.(To run locally use ipynb file)
 
-7. The file 'actin phylogenetic tree.md' is Jupyter notebook's markdown (md) file through which the code snippets and their outputs are easily readable in GitHub.
+7. The file "actin phylogenetic tree.md" is Jupyter notebook's markdown (md) file through which the code snippets and their outputs are easily readable in GitHub.
    (To view in GitHub use the markdown file) 
