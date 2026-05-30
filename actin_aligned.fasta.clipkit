@@ -1,0 +1,76 @@
+CLUSTAL X (1.81) multiple sequence alignment
+
+
+yeast                               ----MDS-------EVAALVIDNGSGMCKAGFAGDDAPRAVFPSIVGRPR
+fruitflyactin                       ---MCDE-------EVAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPR
+nematodactin                        ---MCDD-------DVAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPR
+homosapianscytoplasmic              ----MDD-------DIAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPR
+zebrafishcytoplasmic                ----MDE-------EIAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPR
+ecoliMreB                           FRGMFSNDLSIDLGTANTLIYVKGQGIVL-----------NEPSVVAIRQ
+bacillussubtilismreb                MFGIGARDLGIDLGTANTLVFVKGKGIVV-----------REPSVVALQT
+
+yeast                               HQGIMVGMGQKDSYVGDEAQ----SKRGILTLRYPIEHGIVTNWDDMEKI
+fruitflyactin                       HQGVMVGMGQKDSYVGDEAQ----SKRGILTLKYPIEHGIVTNWDDMEKI
+nematodactin                        HQGVMVGMGQKDSYVGDEAQ----SKRGILTLKYPIEHGIVTNWDDMEKI
+homosapianscytoplasmic              HQGVMVGMGQKDSYVGDEAQ----SKRGILTLKYPIEHGIVTNWDDMEKI
+zebrafishcytoplasmic                HQGVMVGMGQKDSYVGDEAQ----SKRGILTLKYPIEHGIVTNWDDMEKI
+ecoliMreB                           DR---AGSPKSVAAVGHDAKQMLGRTPGNIAAIRPMKDGVIADFFVTEKM
+bacillussubtilismreb                D-------TKSIVAVGNDAKNMIGRTPGNVVALRPMKDGVIADYETTATM
+
+yeast                               WHHTFYNELRVA--PEEHPVLLTEAPMNPKSNREKM-----TQI-MFETF
+fruitflyactin                       WHHTFYNELRVA--PEEHPVLLTEAPLNPKANREKM-----TQI-MFETF
+nematodactin                        WHHTFYNELRVA--PEEHPVLLTEAPLNPKANREKM-----TQI-MFETF
+homosapianscytoplasmic              WHHTFYNELRVA--PEEHPVLLTEAPLNPKANREKM-----TQI-MFETF
+zebrafishcytoplasmic                WHHTFYNELRVA--PEEHPVLLTEAPLNPKANREKM-----TQI-MFETF
+ecoliMreB                           LQHFIKQVHS-NSFMRPSPRVLVCVPVGATQVERRAIRESAQGAGAREVF
+bacillussubtilismreb                MKYYINQAIKNKGMFARKPYVMVCVPSGITAVEERAVIDATRQAGARDAY
+
+yeast                               N-VPAFYVSIQAVLSLYSSGRTTGIVLDSGDGVTHVVPIYAGFSLPHAIL
+fruitflyactin                       N-TPAMYVAIQAVLSLYASGRTTGIVLDSGDGVSHTVPIYEGYALPHAIL
+nematodactin                        N-TPAMYVAIQAVLSLYASGRTTGIVLDSGDGVTHTVPIYEGYALPHAIL
+homosapianscytoplasmic              N-TPAMYVAIQAVLSLYASGRTTGIVMDSGDGVTHTVPIYEGYALPHAIL
+zebrafishcytoplasmic                N-TPAMYVAIQAVLSLYASGRTTGIVMDSGDGVTHTVPIYEGYALPHAIL
+ecoliMreB                           LIEEPMAAAIGAGLPV--SEATGSMVVDIGGGTTEVAVISLNGVVYSSS-
+bacillussubtilismreb                PIEEPFAAAIGANLPV--WEPTGSMVVDIGGGTTEVAIISLGGIVTSQS-
+
+yeast                               RIDLAGRDLTDYLMKILSERGYSFSTTAEREIVRDIKEKLCYVA-LDFEQ
+fruitflyactin                       RLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRDIKEKLCYVA-LDFEQ
+nematodactin                        RLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRDIKEKLCYVA-LDFEQ
+homosapianscytoplasmic              RLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRDIKEKLCYVA-LDFEQ
+zebrafishcytoplasmic                RLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRDIKEKLCYVA-LDFEQ
+ecoliMreB                           -VRIGGDRFDEAIINYVR-RNYGSLIGE--ATAERIKHEIGSAYPGDEVR
+bacillussubtilismreb                -IRVAGDEMDDAIINYIR-KTYNLMIGD--RTAEAIKMEIGSAEAPEESD
+
+yeast                               EM--QTAAQSSSIEKSYELPDGQVITIGNERFRAPEALFHPSVLGLESAG
+fruitflyactin                       EM--ATAASSSSLEKSYELPDGQVITIGNERFRCPESLFQPSFLGMEACG
+nematodactin                        EM--ATAASSSSLEKSYELPDGQVITVGNERFRCPEALFQPSFLGMESAG
+homosapianscytoplasmic              EM--ATAASSSSLEKSYELPDGQVITIGNERFRCPEALFQPSFLGMESCG
+zebrafishcytoplasmic                EM--GTAASSSSLEKSYELPDGQVITIGNERFRCPEALFQPSFLGMESCG
+ecoliMreB                           EIEVRGRNLAEGVPRGFTLNSNEI----------LEAL------QEPLTG
+bacillussubtilismreb                NMEIRGRDLLTGLPKTIEITGKEI----------SNAL------RDTVST
+
+yeast                               IDQTTYNSIMKCDVDVRKELYG-NIVMSGGTTMFPGIAERMQKEITALAP
+fruitflyactin                       IHETTYNSIMKCDVDIRKDLYA-NTVLSGGTTMYPGIADRMQKEITALAP
+nematodactin                        IHETSYNSIMKCDIDIRKDLYA-NTVLSGGTTMYPGIADRMQKEITALAP
+homosapianscytoplasmic              IHETTFNSIMKCDVDIRKDLYA-NTVLSGGTTMYPGIADRMQKEITALAP
+zebrafishcytoplasmic                IHETTFNSIMKCDVDIRKDLYA-NTVLSGGTTMYPGIADRMQKEITSLAP
+ecoliMreB                           IVSAVMVALEQCPPELASDISERGMVLTGGGALLRNLDRLLMEE------
+bacillussubtilismreb                IVEAVKSTLEKTPPELAADIMDRGIVLTGGGALLRNLDKVISEE------
+
+yeast                               SSMKVKIIAPPERKYSVWIG-GSILASLTTFQQMWISKQEYDESGPSIVH
+fruitflyactin                       STMKIKIVAPPERKYSVWIG-GSILASLSTFQQMWISKQEYDESGPSIVH
+nematodactin                        STMKIKIIAPPERKYSVWIG-GSILASLSTFQQMWISKQEYDESGPSIVH
+homosapianscytoplasmic              STMKIKIIAPPERKYSVWIG-GSILASLSTFQQMWISKQEYDESGPSIVH
+zebrafishcytoplasmic                STMKIKIIAPPERKYSVWIG-GSILASLSTFQQMWISKQEYDESGPSIVH
+ecoliMreB                           --TGIPVVVAEDPLTCVARGGGKALEMIDMHGGDLFSEE-----------
+bacillussubtilismreb                --TKMPVLIAEDPLDCVAIGTGKALEHIHLFKGKTR--------------
+
+yeast                               HKCF
+fruitflyactin                       RKCF
+nematodactin                        RKCF
+homosapianscytoplasmic              RKCF
+zebrafishcytoplasmic                RKCF
+ecoliMreB                           ----
+bacillussubtilismreb                ----
+
+
