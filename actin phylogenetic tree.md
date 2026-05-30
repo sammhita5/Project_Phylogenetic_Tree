@@ -1,0 +1,258 @@
+# Phylogenetic analysis of actin protein family
+
+
+```python
+!pip install biopython
+```
+
+    Requirement already satisfied: biopython in c:\users\prasanna\anaconda3\lib\site-packages (1.87)
+    Requirement already satisfied: numpy in c:\users\prasanna\anaconda3\lib\site-packages (from biopython) (2.1.3)
+    
+
+# Installation of Biopython
+
+
+```python
+import sys
+!{sys.executable} -m pip install biopython
+```
+
+    Requirement already satisfied: biopython in c:\users\prasanna\anaconda3\lib\site-packages (1.87)
+    Requirement already satisfied: numpy in c:\users\prasanna\anaconda3\lib\site-packages (from biopython) (2.1.3)
+    
+
+## Importing SeqIO, reading and interpreting the fasta file:
+The curated data was loaded from FASTA file using Biopython's SeqIO.parse() function, the data was stored objects with sequence ID and amino acid information to load the dataset correctly before multible sequence alignment.
+
+## Selection of Organisms
+
+The organisms selected for this study represent major evolutionary groups across both prokaryotes and eukaryotes. Eukaryotic actin proteins were chosen from fungi (Yeast), invertebrates (fruitfly actin & nematod actin), and vertebrates (zebrafish cytoplasmic & homosapians cytoplasmic) to observe how actin proteins diversified across evolutionary lineages.
+
+Bacterial MreB proteins from *Escherichia coli* and *Bacillus subtilis* were included because MreB is considered a structural homolog of eukaryotic actin and plays an important role in bacterial cytoskeletal organization and cell shape maintenance.
+
+The selected organisms therefore provide a broad evolutionary comparison between bacterial cytoskeletal proteins and eukaryotic actins.
+
+
+
+```python
+from Bio import SeqIO
+records = list(SeqIO.parse("actin_raw.fasta", "fasta"))
+
+for record in records:
+    print(record.id)
+    print(len(record.seq))
+```
+
+    homosapianscytoplasmic
+    375
+    zebrafishcytoplasmic
+    375
+    fruitflyactin
+    376
+    nematodactin
+    376
+    yeast
+    375
+    ecoliMreB
+    347
+    bacillussubtilismreb
+    337
+    
+
+## Importing libraries for alignment and phylogentic analysis:
+- AlignI0 is used to read and write multiple sequence alignment files eg: FASTA,Clustal
+- phylo is used for tree visualization and handling phylogenetic tree files - used to display trees,draw trees and save trees
+
+
+```python
+from Bio import AlignIO
+from Bio import Phylo
+```
+
+The aligned actin protein sequences were loaded using `AlignIO.read(). Clustal Omega was the software used to align raw dataset.The raw data is pasted in the input sequence box to get aligned sequences.
+This alignment contains conserved regions and gap positions introduced during multiple sequence alignment to maximize sequence similarity across organisms.
+
+
+```python
+alignment = AlignIO.read("actin_aligned.fasta", "clustal")
+```
+
+
+```python
+print(alignment)
+```
+
+    Alignment with 7 rows and 408 columns
+    --------MDS-------EVAALVIDNGSGMCKAGFAGDDAPRA...KCF yeast
+    -------MCDE-------EVAALVVDNGSGMCKAGFAGDDAPRA...KCF fruitflyactin
+    -------MCDD-------DVAALVVDNGSGMCKAGFAGDDAPRA...KCF nematodactin
+    --------MDD-------DIAALVVDNGSGMCKAGFAGDDAPRA...KCF homosapianscytoplasmic
+    --------MDE-------EIAALVVDNGSGMCKAGFAGDDAPRA...KCF zebrafishcytoplasmic
+    MLKKFRGMFSNDLSIDLGTANTLIYVKGQGIVL-----------...--- ecoliMreB
+    ----MFGIGARDLGIDLGTANTLVFVKGKGIVV-----------...--- bacillussubtilismreb
+    
+
+# Installation of clipkit
+ClipKIT is used to trim poorly aligned and gap-rich regions from the multiple sequence alignment. Trimming improves the quality and reliability of phylogenetic analysis by removing noisy positions that may introduce errors in tree construction.
+
+ClipKIT was installed using pip:
+
+
+```python
+pip install clipkit
+```
+
+    Requirement already satisfied: clipkit in c:\users\prasanna\anaconda3\lib\site-packages (2.12.0)
+    Requirement already satisfied: biopython>=1.84 in c:\users\prasanna\anaconda3\lib\site-packages (from clipkit) (1.87)
+    Requirement already satisfied: numpy<2.2,>=2.0.0 in c:\users\prasanna\anaconda3\lib\site-packages (from clipkit) (2.1.3)
+    Note: you may need to restart the kernel to use updated packages.
+    
+
+## Trimming the Multiple Sequence Alignment
+
+The aligned actin protein sequences were trimmed using ClipKIT to remove poorly aligned and gap-rich regions. Trimming improves phylogenetic accuracy by retaining only informative alignment positions for downstream tree conststction.
+
+The trimming step was executed using Python's 'subprocess' module to run the ClipKIT command-line tool directly from the notebook.
+
+
+```python
+import subprocess
+
+trim=subprocess.run([
+    "clipkit",
+    "actin_aligned.fasta"
+])
+print(trim)
+```
+
+    CompletedProcess(args=['clipkit', 'actin_aligned.fasta'], returncode=0)
+    
+
+# Importing pandas 
+This is done to organize sequence related information during analysis and documentation.
+
+
+```python
+import pandas as pd
+```
+
+# Reading the trimmed alignment
+The trimmed alignment generated by ClipKIT was loaded using Biopython to verify successful removal of poorly aligned regions before phylogenetic analysis.
+
+from Bio import AlignIO
+
+
+```python
+df_file_trim = pd.read_csv('actin_aligned.fasta.clipkit')
+print(df_file_trim)
+```
+
+             CLUSTAL X (1.81) multiple sequence alignment
+    0   yeast                               ----MDS---...
+    1   fruitflyactin                       ---MCDE---...
+    2   nematodactin                        ---MCDD---...
+    3   homosapianscytoplasmic              ----MDD---...
+    4   zebrafishcytoplasmic                ----MDE---...
+    ..                                                ...
+    58           nematodactin                        RKCF
+    59           homosapianscytoplasmic              RKCF
+    60           zebrafishcytoplasmic                RKCF
+    61           ecoliMreB                           ----
+    62           bacillussubtilismreb                ----
+    
+    [63 rows x 1 columns]
+    
+
+# Phylogenetic Tree construction using IQ-TREE
+The trimmed multiple sequence alignment was used to construct a phylogenetic tree using IQ-TREE, a maximum likelihood-based phylogenetic analysis software. Bootstrap analysis was performed to estimate confidence in the inferred evolutionary relationships between the sequences.
+
+IQ-TREE generated tree output files (.treefile,.contree)which were later used for visualization and interpretation. It is saved in 'results' folder.
+
+
+```python
+pip install pillow
+```
+
+    Requirement already satisfied: pillow in c:\users\prasanna\anaconda3\lib\site-packages (11.1.0)
+    Note: you may need to restart the kernel to use updated packages.
+    
+
+
+```python
+from PIL import Image
+results_IQ_Tree = Image.open('results/actin_phylogenetic_tree.png')
+background = Image.new('RGB',results_IQ_Tree.size,(255,255,255))
+background.paste(results_IQ_Tree,mask = results_IQ_Tree.split()[-1] if results_IQ_Tree.mode in('RGBA','LA') else None)
+background.show()
+```
+
+# Tree visualizaton 
+The phylogenetic tree is visualized using biopython's matplotlib and phylo module.The tree represents evolutionary relationships of actin proteins among diverse organisms.
+it reveals of eucaryotic actin proteins clusters while bacterial MreB homologs branch away, indicating evolutionary distance dispite functional similarity.
+
+
+```python
+from Bio import Phylo
+import matplotlib.pyplot as plt
+
+tree = Phylo.read("trees/actin.treefile", "newick")
+
+fig = plt.figure(figsize=(10, 8))
+axes = fig.add_subplot(1, 1, 1)
+
+Phylo.draw(tree, axes=axes)
+
+plt.show()
+```
+
+
+    
+![png](actin%20phylogenetic%20tree_files/actin%20phylogenetic%20tree_24_0.png)
+    
+
+
+# Interpretation and Conclusion:
+The tree shows a deep split separating the bacterial sequences from the eukaryotic sequences. 
+at the bottom, E.coli MreB and Bacillus subtilis MreB cluster tightly together with a 100/100 bootstrap value indicating statistical confidence.However, the branch separating fruit fly, nematode, and vertebrate actin sequences showed lower support values (42.1/44), indicating weaker statistical confidence in the exact branching order within this part of the tree.
+
+The eukaryotic cluster(actin): At the top yeast, fruit fly, nematode, human, and zebrafish actin sequences. 
+Yeast branches out first among eukaryotes as it belongs to kingdom fungi and other eukaryotic sequences belong to kingdom Animalia.
+Fungi and animals shared a single-celled common ancestor over a billion years ago. Fungi split first after which animals split into vertebrates and invertebrates. Since fungi split off so early (outgroup),  the actin gene accumulated unique mutations over time making it different from animals. The tree recognizes this distance and places yeast on its own lone branch at the base of the eukaryotic cluster.
+
+Invertebrates vs. vertebrates (sister subgroups)
+
+Invertebrates: fruitfly actin and nematode actin
+Fruit flies (arthropods) and nematodes (roundworms) belong to the massive groups of protostomes  because they share a more recent common ancestor with each other, their cytoplasmic sequences remain structurally more similar to each other.
+
+Vertebrates:  zebrafish cytoplasmic and homo sapian cytoplasmic 
+Zebrafish and humans are deuterosomes and vertebrates respectively.
+Although humans are terrestrial organisms and zebrafish are aquatic organisms, both retain highly conserved cytoplasmic actin proteins due to their shared vertebrate ancestry (cytoskeletal structure and cytoplasmic actin. 
+
+Functions:
+Bacteria(EcoliMreB and Bacillus subtilismreb )
+
+Cell shape and maintenance
+
+In bacteria, MreB is mostly static compared to eukaryotic actin. It is an internal anchor system keeping a rigid prokaryotic cell from collapsing or bursting under osmotic pressure. 
+
+Single celled eukaryotes(yeast)
+Helps with Polarized growth, endocytosis, and intracellular transport.
+
+Yeast lacks MreB and instead has true eukaryotic actin. Because eukaryotes lack a rigid peptidoglycan wall and are much larger, actin had to evolve into a highly dynamic polymer. 
+In Yeast, actin forms "patches" and "cables" , moving vesicles and organelles to the budding site during cell division. This marks the transition of actin from a structural scaffold to an active transport highway. 
+
+Invertebrates (fruitfly actin & nematode actin)
+Cellular motility, muscle contraction precursor, and tissue integrity.
+
+Vertebrates (zebrafish cytoplasmic & homosapians cytoplasmic)
+ Highly specialized cellular signaling, advanced intracellular trafficking, and distinct isoform specialization.
+ In vertebrates, the actin family underwent gene duplications. 
+Cytoplasmic actin in humans and fish is a highly tuned, ultra-responsive network that can polymerize and depolymerize in milliseconds, allowing cells (like immune cells) to rapidly change shape and migrate through tissues.
+
+Conclusion:
+
+The tree illustrates the evolutionary relationship between bacterial MreB and eukaryotic actin. While they have diverged significantly over billions of years (hence the very long horizontal branch length separating them), they share a deep, ancient ancestry.Although humans are terrestrial organisms and zebrafish are aquatic organisms, both retain highly conserved cytoplasmic actin proteins due to their shared vertebrate ancestry and conserved cytoskeletal organization. MreB is a bacterial homolog of actin that plays an important role in maintaining cell shape, much like actin functions in the eukaryotic cytoskeleton.
+
+
+
+
